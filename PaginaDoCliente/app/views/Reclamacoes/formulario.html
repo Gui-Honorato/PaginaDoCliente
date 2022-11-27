@@ -1,0 +1,75 @@
+#{extends 'main.html' /}
+#{set title:'Cadastro de Reclamação' /}
+<div class="container-fluid">
+    <!--Barra de navegação de cima do formulario-->
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="/public/images/navbarImplasReclamacoes.png" alt="Logo" width="220" height="70" class="d-inline-block align-text-top">
+          </a>
+          <nav class="navbar bg-light">
+            <form class="container-fluid justify-content-start">
+              <a href="@{Reclamacoes.listarReclamacoes}" class="btn btn-outline-success me-2" style="text-decoration: none;">Minhas Reclamações</a>
+            </form>
+          </nav>
+        </div>
+      </nav>
+      <!--Aqui começa o formulario, lembrando que esse formulario serve tanto pra salvar quanto para editar uma reclamação-->
+    
+      <form action="@{Reclamacoes.salvarReclamacao}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="reclamacaoObj.id" value="${reclamacaoEditObj?.id}">
+        <div class="input-group input-group-lg">
+            <span class="input-group-text" id="inputGroup-sizing-lg">Nome do cliente:</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="reclamacaoObj.nomeDoCliente" required autofocus id="nomeCliente" value="${reclamacaoEditObj?.nomeDoCliente}">
+        </br>
+        </br>
+            <span class="input-group-text" id="inputGroup-sizing-lg">CPF/CNPJ:</span>
+            <input type="text" class="form-control" placeholder="00.000.000/0000-00" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="reclamacaoObj.numIdentificadorCliente" required id="NumeroIdenticador" value="${reclamacaoEditObj?.numIdentificadorCliente}">
+        </div>
+</br>
+</br>
+    <div class="input-group mb-3">   
+        <span class="input-group-text" id="inputGroup-sizing-lg">Email:</span>
+        <input type="text" class="form-control" placeholder="E-mail para Contato" aria-label="Recipient's username" aria-describedby="basic-addon2" name="reclamacaoObj.emailCliente" id="Email" required value="${reclamacaoEditObj?.emailCliente}">
+        <span class="input-group-text" id="basic-addon2">@implasverde.ind.com</span>
+    </div>
+
+    
+</br>
+</br>
+    <div class="input-group input-group-lg">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Título:</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="reclamacaoObj.tituloReclamacao" id="Titulo" required value="${reclamacaoEditObj?.tituloReclamacao}">
+    </div>
+</br>
+</br>
+    <div class="input-group input-group-lg">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Número Do Pedido:</span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="reclamacaoObj.numPedido" id="NumeroPedido" required value="${reclamacaoEditObj?.numPedido}">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Data do pedido:</span>
+        <input type="date" class="form-control" name="reclamacaoObj.dataPedido" id="DataPedido" required value="${reclamacaoEditObj?.dataPedido?.format('yyyy-MM-dd')}">
+    </div>
+</br>
+</br>
+    <div class="input-group">
+        <span class="input-group-text">Descrição da Reclamação</span>
+        <textarea name="reclamacaoObj.descReclamacao" class="form-control" aria-label="With textarea" id="DescReclamacao" required cols="30" rows="10">${reclamacaoEditObj?.descReclamacao}</textarea>
+    </div>
+    <label for="DescReclamacao">
+    </label>
+</br>
+</br>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">Foto da Falha</label>
+        <input type="file" class="form-control" id="inputGroupFile01"  name="fotoFalha">
+    </div>
+</br>
+</br>
+    <div class="container-fluid"></div>
+        <input type="submit" name="Botao" id="Botao" class="btn btn-success" value="${reclamacaoEditObj ? 'Atualizar Reclamação' : 'Cadastrar Reclamação'}">
+        <input type="reset" class="btn btn-secondary" value="Limpar">
+    </div>
+
+</form>
+</div>
+
