@@ -1,4 +1,27 @@
 package controllers;
+
+/**
+ * Objetivo: essa classe tem como objetivo controlar
+ * todas as ações da aplicação web
+ * 
+ * Autor: Guilherme da Silva Honorato (g.honorato@escolar.ifrn.edu.br)
+ * 
+ * Data de Criação: 14/10/2022
+ * ##########################
+ * Ultima Alteração:
+ * 
+ * Programador/Gerente de projeto: Guilherme Honorato
+ * Data: 21/10/2022
+ * Alteração: teste de funcionalidades
+ * 
+ * ###########################
+ */
+
+
+
+
+
+
 //importações de bibliotecas do java
 import java.io.File;
 import java.util.Collection;
@@ -13,11 +36,19 @@ import models.Reclamacao;
 import play.mvc.Controller;
 
 public class Reclamacoes extends Controller {
-    //action do formulario, só renderiza o formulario
+    /**
+     * action do formulario, só renderiza o formulario
+     * 
+     */
     public static void formulario() {
         render();
     }
-   //action de salvar uma reclamação que recebe o model Reclamacao e transforma em objeto, e também recebe um File
+    /**
+     * @param reclamacaoObj
+     * @param fotoFalha
+     * 
+     * action de salvar uma reclamação que recebe o model Reclamacao e transforma em objeto, e também recebe um File
+     */
     public static void salvarReclamacao(Reclamacao reclamacaoObj, File fotoFalha){
         //caso haja uma foto inserida no input ele vai entrar nesse IF se execultar todos esses comandos
         //esses comandos além de salvar uma reclamação, salvam a foto em arquivo associam a mesma a reclamação no banco de dados pelo nome
@@ -53,7 +84,9 @@ public class Reclamacoes extends Controller {
         //chama a action detalhar para o detalhamento da reclamação
         detalharReclamacao(reclamacaoObj.id);
     }
-    //action da listagem de reclamações
+    /**
+     * action da listagem de reclamações
+     */
     public static void listarReclamacoes(){
         //recebe um parametro digitado no campo de pesquisa da viewr listarReclamacoes
         String pesquisaCaixaDetexto = params.get("pesquisaTexto");
@@ -71,7 +104,10 @@ public class Reclamacoes extends Controller {
         //renderiza o objeto pra viwer
         render(reclamacaoListObj);
     }
-    //action de remover um objeto que recebe um long id
+    /**
+     * @param id
+     * action de remover um objeto que recebe um long id
+     */
     public static void removerReclamacao(Long id){
         //uma filtragem que pega a entidade que esta no banco de dados pelo ID recebido e salva no objeto
         Reclamacao reclamacaoRemObj = Reclamacao.findById(id);
@@ -83,14 +119,20 @@ public class Reclamacoes extends Controller {
         listarReclamacoes();
         //feito isso, a entidade nao aparecera para o usuario, porém ficara salva no banco de dados
     }
-    //action de detalhar uma reclamação que recebe um long id
+    /**
+     * @param id
+     * action de detalhar uma reclamação que recebe um long id
+     */
     public static void detalharReclamacao(Long id) {
         //uma filtragem que pega a entidade que esta no banco de dados pelo ID recebido e salva no objeto
         Reclamacao reclamacaoDetalharObj = Reclamacao.findById(id);
         //renderiza o objeto para viewr detalharReclamacao
         render(reclamacaoDetalharObj);
     }
-    //action de edição de objeto que recebe um long id
+    /**
+     * @param id
+     * action de edição de objeto que recebe um long id
+     */
     public static void editarReclamacao(Long id){
          //uma filtragem que pega a entidade que esta no banco de dados pelo ID recebido e salva no objeto
         Reclamacao reclamacaoEditObj = Reclamacao.findById(id);

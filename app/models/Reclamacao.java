@@ -1,5 +1,23 @@
 package models;
 
+/**
+ * Objetivo: essa classe tem como objetivo controlar
+ * todas as ações da aplicação web
+ * 
+ * Autor: Maria Fernanda (ribeiro.fernanda@escolar.ifrn.edu.br)
+ * 
+ * Data de Criação: 14/10/2022
+ * ##########################
+ * Ultima Alteração:
+ * 
+ * Programador/Gerente de projeto: Guilherme Honorato
+ * Data: 21/10/2022
+ * Alteração: teste de funcionalidades
+ * 
+ * ###########################
+ */
+
+
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
