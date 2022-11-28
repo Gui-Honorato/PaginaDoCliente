@@ -4,7 +4,7 @@ package models;
  * Objetivo: essa classe tem como objetivo controlar
  * todas as ações da aplicação web
  * 
- * Autor: Guilherme da Silva Honorato (g.honorato@escolar.ifrn.edu.br)
+ * Autor: jezreel Lucas (jezreel.lucas@escolar.ifrn.edu.br)
  * 
  * Data de Criação: 14/10/2022
  * ##########################

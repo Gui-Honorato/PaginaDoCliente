@@ -25,10 +25,14 @@ import javax.persistence.Enumerated;
 
 import play.db.jpa.Model;
 
+/*
+ * Atributos da entidade reclamação
+ * Esses atributos são preenchidos pelo usuario
+ */
+
 @Entity
 public class Reclamacao extends Model {
-    //Atributos da entidade reclamação
-    //Esses atributos são preenchidos pelo usuario
+    
     public String nomeDoCliente;
     public String numIdentificadorCliente;
     public String emailCliente;
