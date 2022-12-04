@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.cfg.CollectionSecondPass;
 
 //importações de classes
 import models.DeletadoStatus;
@@ -92,6 +93,8 @@ public class Reclamacoes extends Controller {
         String pesquisaCaixaDetexto = params.get("pesquisaTexto");
         //Recebe uma lista em formato de coleção
         List<Reclamacao> reclamacaoListObj = Collections.EMPTY_LIST;
+
+        List<Reclamacao> reclamacaoListArqObj = Collections.EMPTY_LIST;
         //Caso o campo de texto de pesquisa esteja vazio ou no caso de recém carregado ele esteja nulo, ele entrara aqui
         if(pesquisaCaixaDetexto == null || pesquisaCaixaDetexto.isEmpty()){
             //o objeto que esta com a lista recebera um filtro onde ele trara apenas as reclamações que estiverem com ONINTERFACE no seu estado de eclusão pelo usuario
