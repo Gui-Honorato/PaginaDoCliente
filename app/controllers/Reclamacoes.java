@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.hibernate.cfg.CollectionSecondPass;
 
+import models.ArquivadoStatus;
 //importações de classes
 import models.DeletadoStatus;
 import models.Reclamacao;
@@ -62,7 +63,9 @@ public class Reclamacoes extends Controller {
             reclamacaoObj.dataReclamacao = new Date();
             //salva a reclamação no banco
             reclamacaoObj.save();
-        
+            
+            flash.success("Sua reclamação foi cadastrada com sucesso!");
+
             //cria uma pasta dentro da pasta uploads com o nome do id da reclamação
             new File("PaginaDoCliente/uploads/" + reclamacaoObj.id).mkdir();
             //salva o caminho da foto nesse objeto
@@ -81,6 +84,9 @@ public class Reclamacoes extends Controller {
             reclamacaoObj.dataReclamacao = new Date();
             //salva a reclamação no banco
             reclamacaoObj.save();
+            
+            flash.success("Sua reclamação foi cadastrada com sucesso!");
+        
         }
         //chama a action detalhar para o detalhamento da reclamação
         detalharReclamacao(reclamacaoObj.id);
@@ -95,17 +101,25 @@ public class Reclamacoes extends Controller {
         List<Reclamacao> reclamacaoListObj = Collections.EMPTY_LIST;
 
         List<Reclamacao> reclamacaoListArqObj = Collections.EMPTY_LIST;
+        
         //Caso o campo de texto de pesquisa esteja vazio ou no caso de recém carregado ele esteja nulo, ele entrara aqui
         if(pesquisaCaixaDetexto == null || pesquisaCaixaDetexto.isEmpty()){
             //o objeto que esta com a lista recebera um filtro onde ele trara apenas as reclamações que estiverem com ONINTERFACE no seu estado de eclusão pelo usuario
-            reclamacaoListObj = Reclamacao.find("deletadoStatusObj = ?1", DeletadoStatus.ONINTERFACE).fetch();
+            reclamacaoListObj = Reclamacao.find("deletadoStatusObj = ?1 AND arquivadoStatusObj = ?2", DeletadoStatus.ONINTERFACE, ArquivadoStatus.OFFARQUIVO).fetch();
+
+            reclamacaoListArqObj = Reclamacao.find("deletadoStatusObj = ?1 AND arquivadoStatusObj = ?2", DeletadoStatus.ONINTERFACE, ArquivadoStatus.ONARQUIVO).fetch();
+
+
         //Caso seja digitado algo no campo de pesquisa ele entrarar aqui
         } else {
             //o objeto que esta com a lista recebera um filtro onde ele vai trazer todas as reclamações que tiverem o titulo ou o numero do pedido parecidos com o que foi digitado na area de pesquisa E as reclamações que tiverem com ONINTERFACE no seu campo de exclusao pelo usuario
-            reclamacaoListObj = Reclamacao.find("(lower(tituloReclamacao) like ?1 OR numPedido like ?2) AND deletadoStatusObj = ?3", "%"+pesquisaCaixaDetexto.toLowerCase()+ "%", "%"+pesquisaCaixaDetexto+"%", DeletadoStatus.ONINTERFACE).fetch();
+            reclamacaoListObj = Reclamacao.find("((lower(tituloReclamacao) like ?1 OR numPedido like ?2) AND deletadoStatusObj = ?3) AND arquivadoStatusObj = ?4", "%"+pesquisaCaixaDetexto.toLowerCase()+ "%", "%"+pesquisaCaixaDetexto+"%", DeletadoStatus.ONINTERFACE, ArquivadoStatus.OFFARQUIVO).fetch();
+            
+            reclamacaoListArqObj = Reclamacao.find("((lower(tituloReclamacao) like ?1 OR numPedido like ?2) AND deletadoStatusObj = ?3) AND arquivadoStatusObj = ?4", "%"+pesquisaCaixaDetexto.toLowerCase()+ "%", "%"+pesquisaCaixaDetexto+"%", DeletadoStatus.ONINTERFACE, ArquivadoStatus.ONARQUIVO).fetch();
+
         }
         //renderiza o objeto pra viwer
-        render(reclamacaoListObj);
+        render(reclamacaoListObj, reclamacaoListArqObj);
     }
     /**
      * @param id
@@ -118,6 +132,9 @@ public class Reclamacoes extends Controller {
         reclamacaoRemObj.deletadoStatusObj = DeletadoStatus.OFFINTERFACE;
         //salva a alteração feita
         reclamacaoRemObj.save();
+
+        flash.success("Sua reclamação foi removida");
+
         //chama a action listagem
         listarReclamacoes();
         //feito isso, a entidade nao aparecera para o usuario, porém ficara salva no banco de dados
@@ -142,5 +159,19 @@ public class Reclamacoes extends Controller {
         //renderiza o objeto para viewr formulario
         renderTemplate("Reclamacoes/formulario.html", reclamacaoEditObj);
         //feito isso os dados salvos serao carregados nos seus devidos campus do formulario podendo ser editado e salvos novamente
+    }
+
+    public static void arquivarReclamacao(Long id) {
+        Reclamacao reclamacaoArqObj = Reclamacao.findById(id);
+        reclamacaoArqObj.arquivadoStatusObj = ArquivadoStatus.ONARQUIVO;
+        reclamacaoArqObj.save();
+        flash.success("Sua reclamação foi arquivada");
+        listarReclamacoes();
+    }
+    public static void desarquivarReclamacao(Long id){
+        Reclamacao reclamacaoArqObj = Reclamacao.findById(id);
+        reclamacaoArqObj.arquivadoStatusObj = ArquivadoStatus.OFFARQUIVO;
+        reclamacaoArqObj.save();
+        listarReclamacoes();
     }
 }
