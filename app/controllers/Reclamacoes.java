@@ -33,7 +33,7 @@ import org.hibernate.cfg.CollectionSecondPass;
 
 import models.ArquivadoStatus;
 //importações de classes
-import models.DeletadoStatus;
+import models.DeletadoStatusReclamacao;
 import models.Reclamacao;
 import play.mvc.Controller;
 
@@ -105,17 +105,17 @@ public class Reclamacoes extends Controller {
         //Caso o campo de texto de pesquisa esteja vazio ou no caso de recém carregado ele esteja nulo, ele entrara aqui
         if(pesquisaCaixaDetexto == null || pesquisaCaixaDetexto.isEmpty()){
             //o objeto que esta com a lista recebera um filtro onde ele trara apenas as reclamações que estiverem com ONINTERFACE no seu estado de eclusão pelo usuario
-            reclamacaoListObj = Reclamacao.find("deletadoStatusObj = ?1 AND arquivadoStatusObj = ?2", DeletadoStatus.ONINTERFACE, ArquivadoStatus.OFFARQUIVO).fetch();
+            reclamacaoListObj = Reclamacao.find("deletadoStatusObj = ?1 AND arquivadoStatusObj = ?2", DeletadoStatusReclamacao.ONINTERFACE, ArquivadoStatus.OFFARQUIVO).fetch();
 
-            reclamacaoListArqObj = Reclamacao.find("deletadoStatusObj = ?1 AND arquivadoStatusObj = ?2", DeletadoStatus.ONINTERFACE, ArquivadoStatus.ONARQUIVO).fetch();
+            reclamacaoListArqObj = Reclamacao.find("deletadoStatusObj = ?1 AND arquivadoStatusObj = ?2", DeletadoStatusReclamacao.ONINTERFACE, ArquivadoStatus.ONARQUIVO).fetch();
 
 
         //Caso seja digitado algo no campo de pesquisa ele entrarar aqui
         } else {
             //o objeto que esta com a lista recebera um filtro onde ele vai trazer todas as reclamações que tiverem o titulo ou o numero do pedido parecidos com o que foi digitado na area de pesquisa E as reclamações que tiverem com ONINTERFACE no seu campo de exclusao pelo usuario
-            reclamacaoListObj = Reclamacao.find("((lower(tituloReclamacao) like ?1 OR numPedido like ?2) AND deletadoStatusObj = ?3) AND arquivadoStatusObj = ?4", "%"+pesquisaCaixaDetexto.toLowerCase()+ "%", "%"+pesquisaCaixaDetexto+"%", DeletadoStatus.ONINTERFACE, ArquivadoStatus.OFFARQUIVO).fetch();
+            reclamacaoListObj = Reclamacao.find("((lower(tituloReclamacao) like ?1 OR numPedido like ?2) AND deletadoStatusObj = ?3) AND arquivadoStatusObj = ?4", "%"+pesquisaCaixaDetexto.toLowerCase()+ "%", "%"+pesquisaCaixaDetexto+"%", DeletadoStatusReclamacao.ONINTERFACE, ArquivadoStatus.OFFARQUIVO).fetch();
             
-            reclamacaoListArqObj = Reclamacao.find("((lower(tituloReclamacao) like ?1 OR numPedido like ?2) AND deletadoStatusObj = ?3) AND arquivadoStatusObj = ?4", "%"+pesquisaCaixaDetexto.toLowerCase()+ "%", "%"+pesquisaCaixaDetexto+"%", DeletadoStatus.ONINTERFACE, ArquivadoStatus.ONARQUIVO).fetch();
+            reclamacaoListArqObj = Reclamacao.find("((lower(tituloReclamacao) like ?1 OR numPedido like ?2) AND deletadoStatusObj = ?3) AND arquivadoStatusObj = ?4", "%"+pesquisaCaixaDetexto.toLowerCase()+ "%", "%"+pesquisaCaixaDetexto+"%", DeletadoStatusReclamacao.ONINTERFACE, ArquivadoStatus.ONARQUIVO).fetch();
 
         }
         //renderiza o objeto pra viwer
@@ -129,7 +129,7 @@ public class Reclamacoes extends Controller {
         //uma filtragem que pega a entidade que esta no banco de dados pelo ID recebido e salva no objeto
         Reclamacao reclamacaoRemObj = Reclamacao.findById(id);
         //seta o atributo de exclusao pelo usuario desse objeto para OFFINTERFACE
-        reclamacaoRemObj.deletadoStatusObj = DeletadoStatus.OFFINTERFACE;
+        reclamacaoRemObj.deletadoStatusReclamacaoEnum = DeletadoStatusReclamacao.OFFINTERFACE;
         //salva a alteração feita
         reclamacaoRemObj.save();
 

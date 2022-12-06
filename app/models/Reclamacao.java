@@ -49,7 +49,7 @@ public class Reclamacao extends Model {
     
     //Instacidor do enumerate
     @Enumerated(EnumType.STRING) 
-    public DeletadoStatus deletadoStatusObj;
+    public DeletadoStatusReclamacao deletadoStatusReclamacaoEnum;
 
     @Enumerated(EnumType.STRING)
     public ArquivadoStatus arquivadoStatusObj;
@@ -58,7 +58,7 @@ public class Reclamacao extends Model {
     //Toda vez que uma reclamação for realizada ela ja iniciara com o atributo de exclusao pelo usuario como ONINTERFACE
     public Reclamacao(){
         arquivadoStatusObj = ArquivadoStatus.OFFARQUIVO;
-        deletadoStatusObj = DeletadoStatus.ONINTERFACE;
+        deletadoStatusReclamacaoEnum = DeletadoStatusReclamacao.ONINTERFACE;
     }
 
 }

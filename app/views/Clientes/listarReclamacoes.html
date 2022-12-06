@@ -1,0 +1,52 @@
+#{extends 'main.html' /}
+#{set title:'Reclamações Realizadas' /}
+
+<!--Barra de navegação da parte de cima da listagem-->
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+      <nav class="navbar bg-light">
+          <a class="btn btn-outline-success me-2"  style="text-decoration: none;" href="@{Reclamacoes.formulario}">Voltar</a>
+      </nav>
+      <!--Parte do Formulario de pesquisa-->
+      <form action="@{Reclamacoes.listarReclamacoes}" class="d-flex" role="search">
+        <input type="text" name="pesquisaTexto" class="form-control me-2" placeholder="Search" aria-label="Seach">
+        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+      </form>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+          <!--Aqui é a parte onde esta todos os atributos que serão listados na listagem total de reclamações-->
+          <!--Essa é a parte do cabeçalho da lista-->
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Titulo</th>
+      <th scope="col">Status</th>
+      <th scope="col">Número do Pedido</th>
+      <th scope="col">Data da Reclamação</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <!--aqui é as reclamações que serão listadas-->
+  <!--Parte do conteudo da Lista-->
+  <tbody class="table-group-divider">
+    #{list items:reclamacaoListObj, as: 'rList'}
+    <tr>
+      <td>${rList.tituloReclamacao}</td>
+      <td>${rList.statusDaReclamacao}</td>
+      <td>${rList.numPedido}</td>
+      <td>${rList.dataReclamacao.format('dd/MM/yyyy')}</td>
+      <td><a class="btn btn-success btn-sm" href="@{Reclamacoes.detalharReclamacao(rList.id)}">Detalhes</a>
+        <a class="btn btn-secondary btn-sm" href="@{Reclamacoes.arquivarReclamacao(rList.id)}">Arquivar</a>  
+        <a class="btn btn-warning btn-sm" href="@{Reclamacoes.editarReclamacao(rList.id)}">Editar</a> 
+        <a class="btn btn-danger btn-sm" href="@{Reclamacoes.removerReclamacao(rList.id)}">Remover</a></td>
+    </tr>
+    #{/list}
+  </tbody>
+</table>    
