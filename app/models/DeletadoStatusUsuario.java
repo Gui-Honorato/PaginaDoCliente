@@ -1,5 +1,5 @@
 package models;
 
-public enum DeletadoStatusCliente {
+public enum DeletadoStatusUsuario {
     ATIVADO, NEGATIVADO
 }
