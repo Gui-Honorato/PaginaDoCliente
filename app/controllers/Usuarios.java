@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import models.Usuario;
@@ -10,8 +11,9 @@ public class Usuarios extends Controller{
     public static void formulario(){
         render();
     }
-
+    
     public static void salvarUsuario(Usuario usuarioObj){
+        usuarioObj.dataDeEntrada = new Date();
         usuarioObj.save();
         listarUsuarios();
 

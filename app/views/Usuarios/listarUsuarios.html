@@ -5,7 +5,7 @@
 <nav class="navbar bg-light">
     <div class="container-fluid">
       <nav class="navbar bg-light">
-          <a class="btn btn-outline-success me-2"  style="text-decoration: none;" href="@{Reclamacoes.formulario}">Voltar</a>
+          <a class="btn btn-outline-success me-2"  style="text-decoration: none;" href="@{Usuarios.formulario}">Voltar</a>
       </nav>
       <!--Parte do Formulario de pesquisa-->
       <form action="@{Reclamacoes.listarReclamacoes}" class="d-flex" role="search">
@@ -26,26 +26,23 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Titulo</th>
-      <th scope="col">Status</th>
-      <th scope="col">Número do Pedido</th>
-      <th scope="col">Data da Reclamação</th>
+      <th scope="col">Nome do Cliente</th>
+      <th scope="col">CPF/CNPJ</th>
+      <th scope="col">Data de Cadastro</th>
       <th>Ações</th>
     </tr>
   </thead>
   <!--aqui é as reclamações que serão listadas-->
   <!--Parte do conteudo da Lista-->
   <tbody class="table-group-divider">
-    #{list items:reclamacaoListObj, as: 'rList'}
+    #{list items:usuarioListObj, as: 'usuList'}
     <tr>
-      <td>${rList.tituloReclamacao}</td>
-      <td>${rList.statusDaReclamacao}</td>
-      <td>${rList.numPedido}</td>
-      <td>${rList.dataReclamacao.format('dd/MM/yyyy')}</td>
-      <td><a class="btn btn-success btn-sm" href="@{Reclamacoes.detalharReclamacao(rList.id)}">Detalhes</a>
-        <a class="btn btn-secondary btn-sm" href="@{Reclamacoes.arquivarReclamacao(rList.id)}">Arquivar</a>  
-        <a class="btn btn-warning btn-sm" href="@{Reclamacoes.editarReclamacao(rList.id)}">Editar</a> 
-        <a class="btn btn-danger btn-sm" href="@{Reclamacoes.removerReclamacao(rList.id)}">Remover</a></td>
+      <td>${usuList.nomeUsuarioString}</td>
+      <td>${usuList.numIdentificadorUsuarioString}</td>
+      <td>${usuList.dataDeEntrada.format('dd/MM/yyyy')}</td>
+      <td><a class="btn btn-success btn-sm" href="@{Usuarios.detalharUsuario(usuList.id)}">Detalhes</a>
+        <a class="btn btn-warning btn-sm" href="@{Usuarios.editarUsuario(usuList.id)}">Editar</a> 
+        <a class="btn btn-danger btn-sm" href="@{Usuarios.removerUsuario(usuList.id)}">Remover</a></td>
     </tr>
     #{/list}
   </tbody>

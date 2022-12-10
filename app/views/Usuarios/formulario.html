@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Cadastro de Clientes' /}
+#{set title:'Cadastro de Usuarios' /}
 <div class="container-fluid">
     <!--Barra de navegação de cima do formulario-->
     <nav class="navbar bg-light">
@@ -9,28 +9,28 @@
           </a>
           <nav class="navbar bg-light">
             <form class="container-fluid justify-content-start">
-              <a href="@{Clientes.listarClientes}" class="btn btn-outline-success me-2" style="text-decoration: none;">Clientes Cadastrados</a>
+              <a href="@{Usuarios.listarUsuarios}" class="btn btn-outline-success me-2" style="text-decoration: none;">Clientes Cadastrados</a>
             </form>
           </nav>
         </div>
       </nav>
       <!--Aqui começa o formulario, lembrando que esse formulario serve tanto pra salvar quanto para editar uma reclamação-->
     
-      <form action="@{Clientes.salvarCliente}" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="clienteObj.id" value="${clienteEditObj?.id}">
+      <form action="@{Usuarios.salvarUsuario}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="usuarioObj.id" value="${usuarioEditObj?.id}">
         <div class="input-group input-group-lg">
             <span class="input-group-text" id="inputGroup-sizing-lg">Nome do cliente:</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="clienteObj.nomeClienteString" required autofocus id="nomeCliente" value="${clienteEditObj?.nomeClienteString}">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.nomeUsuarioString" required autofocus id="nomeCliente" value="${usuarioEditObj?.nomeUsuarioString}">
         </br>
         </br>
-            <span class="input-group-text" id="inputGroup-sizing-lg">CPF/CNPJ:</span>
-            <input type="text" class="form-control" placeholder="00.000.000/0000-00 ou 999.999.999-99" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="clienteObj.numIdentificadorClienteString" required id="NumeroIdenticador" value="${clienteEditObj?.numIdentificadorClienteString}">
+            <span class="input-group-text" id="inputGroup-sizing-lg">CNPJ/CPF:</span>
+            <input type="text" class="form-control" placeholder="00.000.000/0000-00 ou 999.999.999-99" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.numIdentificadorUsuarioString" required id="NumeroIdenticador" value="${usuarioEditObj?.numIdentificadorUsuarioString}">
         </div>
 </br>
 </br>
     <div class="input-group mb-3">   
         <span class="input-group-text" id="inputGroup-sizing-lg">Email:</span>
-        <input type="text" class="form-control" placeholder="E-mail para Contato" aria-label="Recipient's username" aria-describedby="basic-addon2" name="clienteObj.emailClienteString" id="Email" required value="${clienteEditObj?.emailClienteString}">
+        <input type="text" class="form-control" placeholder="E-mail para Contato" aria-label="Recipient's username" aria-describedby="basic-addon2" name="usuarioObj.emailUsuarioString" id="Email" required value="${usuarioEditObj?.emailUsuarioString}">
         <span class="input-group-text" id="basic-addon2">implasverde@example.com</span>
     </div>
 
@@ -39,12 +39,12 @@
 </br>
     <div class="input-group input-group-lg">
         <span class="input-group-text" id="inputGroup-sizing-lg">Contato</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="clienteObj.contatoClienteString" id="Titulo" required value="${clienteEditObj?.contatoClienteString}">
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.contatoUsuarioString" id="Titulo" required value="${usuarioEditObj?.contatoUsuarioString}">
     </div>
 </br>
 </br>
     <div class="container-fluid"></div>
-        <input type="submit" name="Botao" id="Botao" class="btn btn-success" value="${reclamacaoEditObj ? 'Atualizar Reclamação' : 'Cadastrar Reclamação'}">
+        <input type="submit" name="Botao" id="Botao" class="btn btn-success" value="${usuarioEditObj ? 'Atualizar Usuario' : 'Cadastrar Usuario'}">
         <input type="reset" class="btn btn-secondary" value="Limpar">
     </div>
 
