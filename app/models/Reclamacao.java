@@ -22,6 +22,9 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import play.db.jpa.Model;
 
@@ -33,14 +36,15 @@ import play.db.jpa.Model;
 @Entity
 public class Reclamacao extends Model {
     
-    public String nomeDoCliente;
-    public String numIdentificadorCliente;
-    public String emailCliente;
     public String tituloReclamacao;
     public String numPedido;
     public Date dataPedido;
     public String descReclamacao;
     public String fotoFalhaNome;
+
+    @ManyToOne
+    public Usuario usuarioReclamador;
+
     
     //Atributos da entidade reclamação
     //Atributos que sao gerados pelo sistema
@@ -52,12 +56,12 @@ public class Reclamacao extends Model {
     public DeletadoStatusReclamacao deletadoStatusReclamacaoEnum;
 
     @Enumerated(EnumType.STRING)
-    public ArquivadoStatus arquivadoStatusObj;
+    public ArquivadoStatus arquivadoStatusEnum;
     
     //Contrutor
     //Toda vez que uma reclamação for realizada ela ja iniciara com o atributo de exclusao pelo usuario como ONINTERFACE
     public Reclamacao(){
-        arquivadoStatusObj = ArquivadoStatus.OFFARQUIVO;
+        arquivadoStatusEnum = ArquivadoStatus.OFFARQUIVO;
         deletadoStatusReclamacaoEnum = DeletadoStatusReclamacao.ONINTERFACE;
     }
 

@@ -17,33 +17,38 @@
       <!--Aqui começa o formulario, lembrando que esse formulario serve tanto pra salvar quanto para editar uma reclamação-->
     
       <form action="@{Usuarios.salvarUsuario}" method="post" enctype="multipart/form-data">
+        
         <input type="hidden" name="usuarioObj.id" value="${usuarioEditObj?.id}">
+        
         <div class="input-group input-group-lg">
-            <span class="input-group-text" id="inputGroup-sizing-lg">Nome do cliente:</span>
+            <span class="input-group-text" id="inputGroup-sizing-lg">Nome do cliente</span>
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.nomeUsuarioString" required autofocus id="nomeCliente" value="${usuarioEditObj?.nomeUsuarioString}">
         </br>
         </br>
-            <span class="input-group-text" id="inputGroup-sizing-lg">CNPJ/CPF:</span>
+            <span class="input-group-text" id="inputGroup-sizing-lg">CNPJ/CPF</span>
             <input type="text" class="form-control" placeholder="00.000.000/0000-00 ou 999.999.999-99" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.numIdentificadorUsuarioString" required id="NumeroIdenticador" value="${usuarioEditObj?.numIdentificadorUsuarioString}">
+
+            <span class="input-group-text" id="inputGroup-sizing-lg">Contato</span>
+        <input type="text" class="form-control" placeholder="(99)99999-9999" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.contatoUsuarioString" id="Titulo" required value="${usuarioEditObj?.contatoUsuarioString}">
         </div>
 </br>
-</br>
-    <div class="input-group mb-3">   
-        <span class="input-group-text" id="inputGroup-sizing-lg">Email:</span>
-        <input type="text" class="form-control" placeholder="E-mail para Contato" aria-label="Recipient's username" aria-describedby="basic-addon2" name="usuarioObj.emailUsuarioString" id="Email" required value="${usuarioEditObj?.emailUsuarioString}">
-        <span class="input-group-text" id="basic-addon2">implasverde@example.com</span>
-    </div>
+<select name="usuarioObj.tipoDeUsuarioEnum" class="form-select" aria-label="Default select example">
+  <option selected>Selecione o Tipo de Usuario</option>
+  <option value="ADMIN">Funcionario da Empresas</option>
+  <option value="CLIENT">Cliente Da empresa</option>
 
-    
-</br>
-</br>
-    <div class="input-group input-group-lg">
-        <span class="input-group-text" id="inputGroup-sizing-lg">Contato</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.contatoUsuarioString" id="Titulo" required value="${usuarioEditObj?.contatoUsuarioString}">
-    </div>
-</br>
-</br>
-    <div class="container-fluid"></div>
+</select>
+<br>
+    <div class="input-group input-group-lg">   
+        <span class="input-group-text" id="inputGroup-sizing-lg">Email do Usuario</span>
+        <input type="text" class="form-control" placeholder="implasverde@example.com" aria-label="Recipient's username" aria-describedby="basic-addon2" name="usuarioObj.emailUsuarioString" id="Email" required value="${usuarioEditObj?.emailUsuarioString}">
+
+        <span class="input-group-text" id="inputGroup-sizing-lg">Senha do Usuario</span>
+        <input type="password" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" name="senha" id="Senha"  value="">
+        
+        
+      </div>
+    <br>
         <input type="submit" name="Botao" id="Botao" class="btn btn-success" value="${usuarioEditObj ? 'Atualizar Usuario' : 'Cadastrar Usuario'}">
         <input type="reset" class="btn btn-secondary" value="Limpar">
     </div>
