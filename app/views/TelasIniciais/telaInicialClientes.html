@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title:'Implasverde Reclamações' /}
+
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        
+        <a class="navbar-brand" href="#"> <img src="/public/images/navbarImplasReclamacoes.png" alt="Logo" width="220" height="70" class="d-inline-block align-text-top"></a>
+        
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="@{Reclamacoes.formulario}">Cadastra Reclamação</a>
+          <a class="nav-link active" href="@{Reclamacoes.listarReclamacoes}">Minhas Reclamações</a>
+          <p class="nav-link" style="color: rgb(0, 144, 0);">Olá SR(a) Cliente ${session.get("usuario.name")}</p>
+        </div>
+    </div>
+   
+    
+      
+    <nav class="navbar bg-light">
+     
+        <a href="@{Logins.logout}" class="btn btn-outline-success me-2" style="text-decoration: none;">Sair</a>
+      </nav>
+    </div>
+  </nav>
+
+ 
+
+  

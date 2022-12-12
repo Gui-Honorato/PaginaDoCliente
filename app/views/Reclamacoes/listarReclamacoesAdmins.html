@@ -1,0 +1,53 @@
+#{extends 'main.html' /}
+#{set title:'Reclamações Realizadas' /}
+
+<!--Barra de navegação da parte de cima da listagem-->
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+      <nav class="navbar bg-light">
+          <a class="btn btn-outline-success me-2"  style="text-decoration: none;" href="@{TelasIniciais.telaIncialAdmins}">Tela Inicial</a>
+      </nav>
+      <!--Parte do Formulario de pesquisa-->
+      <form action="@{Reclamacoes.listarReclamacoesAdmins}" class="d-flex" role="search">
+        <input type="text" name="pesquisaTexto" class="form-control me-2" placeholder="Search" aria-label="Seach">
+        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+      </form>
+    </div>
+  </nav>
+
+
+
+
+
+
+ 
+          <!--Aqui é a parte onde esta todos os atributos que serão listados na listagem total de reclamações-->
+          <!--Essa é a parte do cabeçalho da lista-->
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome do Cliente</th>
+      <th scope="col">CPF/CNPJ</th>
+      <th scope="col">Titulo da Reclamação</th>
+      <th scope="col">Data da Reclamação</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <!--aqui é as reclamações que serão listadas-->
+  <!--Parte do conteudo da Lista-->
+  <tbody class="table-group-divider">
+    #{list items:reclamacaoListAdminsObj, as: 'rList'}
+    <tr>
+      <td>${rList.usuarioReclamador.nomeUsuarioString}</td>
+      <td>${rList.usuarioReclamador.numIdentificadorUsuarioString}</td>
+      <td>${rList.tituloReclamacao}</td>
+      <td>${rList.dataReclamacao.format('dd/MM/yyyy')}</td>
+      <td><a class="btn btn-success btn-sm" href="@{Reclamacoes.detalharReclamacaoAdmins(rList.id)}">Detalhes</a>
+        <a class="btn btn-danger btn-sm" href="@{Reclamacoes.removerReclamacaoAdmins(rList.id)}">Remover</a></td>
+    </tr>
+    #{/list}
+  </tbody>
+</table>    
+  
+
+

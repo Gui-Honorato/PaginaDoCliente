@@ -1,10 +1,9 @@
 package models;
 
 /**
- * Objetivo: essa classe tem como objetivo controlar
- * todas as ações da aplicação web
+ * Objetivo: essa classe tem como objetivo hospedar o atributo reclaamção
  * 
- * Autor: Maria Fernanda (ribeiro.fernanda@escolar.ifrn.edu.br)
+ * Autor: Maria Fernanda (ribeiro.fernanda@escolar.ifrn.edu.br) e jezreel Lucas (jezreel.lucas@escolar.ifrn.edu.br)
  * 
  * Data de Criação: 14/10/2022
  * ##########################
@@ -35,13 +34,14 @@ import play.db.jpa.Model;
 
 @Entity
 public class Reclamacao extends Model {
-    
+    //atributos da reclamação
     public String tituloReclamacao;
     public String numPedido;
     public Date dataPedido;
     public String descReclamacao;
     public String fotoFalhaNome;
-
+    public String respostaDaEmpresa;
+    //relacionameto com a tabela usuario
     @ManyToOne
     public Usuario usuarioReclamador;
 
@@ -54,7 +54,7 @@ public class Reclamacao extends Model {
     //Instacidor do enumerate
     @Enumerated(EnumType.STRING) 
     public DeletadoStatusReclamacao deletadoStatusReclamacaoEnum;
-
+    
     @Enumerated(EnumType.STRING)
     public ArquivadoStatus arquivadoStatusEnum;
     

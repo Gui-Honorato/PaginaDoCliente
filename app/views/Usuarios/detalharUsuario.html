@@ -1,0 +1,48 @@
+#{extends 'main.html' /}
+#{set title:'Detalhamento de Usuario' /}
+
+<!--Barra de navegação da parte de superior do detalhamento, o link da logo ainda nao funciona, depois pretedemos dar funcionalidade pra ele-->
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/public/images/navbarImplasReclamacoes.png" alt="Logo" width="220" height="70" class="d-inline-block align-text-top">
+      </a><p class="text-success">Detalhamento</p>
+
+      <nav class="navbar bg-light">
+        <form class="container-fluid justify-content-start">
+          <a href="@{Usuarios.listarUsuarios}" class="btn btn-outline-success me-2" style="text-decoration: none;">Usuarios Cadastrados</a>
+        </form>
+      </nav>
+    </div>
+  </nav>
+<!--Parte de cima da tabela que nao queriamos usar, so mesmo a linha-->
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <!--aqui começa a detalhar todos os atributos da reclamação-->
+    <tbody class="table-group-divider">
+      <tr>
+        <th scope="row">Nome do Usuario </th>
+        <td>${usuarioDetObj.nomeUsuarioString}</td>
+        <th>Data de Entrada: </th>
+        <td>${usuarioDetObj.dataDeEntrada.format('dd/MM/yyyy')}</td>
+        <th scope="row">CPF/CNPJ do Usuario: </th>
+        <td>${usuarioDetObj.numIdentificadorUsuarioString}</td>
+      </tr>
+      <tr>
+        <th>Email do Usuario: </th>
+        <td>${usuarioDetObj.emailUsuarioString}</td>
+        <th>Contato do Usuario: </th>
+        <td>${usuarioDetObj.contatoUsuarioString}</td>
+      </tr>
+    </tbody>
+  </table>
+
+    <!--a parte da imagem e da descrição da reclamação-->
+
+
+   

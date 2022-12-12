@@ -1,5 +1,19 @@
 package security;
-
+/**
+ * Objetivo: essa classe tem como objetivo fazer a segurança do sistema
+ * 
+ * Autor: Guilherme da Silva Honorato (g.honorato@escolar.ifrn.edu.br)
+ * 
+ * Data de Criação: 01/11/2022
+ * ##########################
+ * Ultima Alteração:
+ * 
+ * Programador/Gerente de projeto: Guilherme Honorato
+ * Data: 10/12/2022
+ * Alteração: teste de funcionalidades e correção de bug no verificadorAdministrador mais especificamente na logica no IF
+ * 
+ * ###########################
+ */
 import controllers.Logins;
 import models.TipoDeUsuario;
 import play.mvc.Before;

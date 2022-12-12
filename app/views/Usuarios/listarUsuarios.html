@@ -1,14 +1,15 @@
 #{extends 'main.html' /}
-#{set title:'Reclamações Realizadas' /}
+#{set title:'Usuarios Cadastrados' /}
 
 <!--Barra de navegação da parte de cima da listagem-->
 <nav class="navbar bg-light">
     <div class="container-fluid">
       <nav class="navbar bg-light">
-          <a class="btn btn-outline-success me-2"  style="text-decoration: none;" href="@{Usuarios.formulario}">Voltar</a>
+        <a class="btn btn-outline-success me-2"  style="text-decoration: none;" href="@{TelasIniciais.telaIncialAdmins}">Tela Incial</a>  
+        <a class="btn btn-outline-success me-2"  style="text-decoration: none;" href="@{Usuarios.formulario}">Cadastrar Usuario</a>
       </nav>
       <!--Parte do Formulario de pesquisa-->
-      <form action="@{Reclamacoes.listarReclamacoes}" class="d-flex" role="search">
+      <form action="@{Usuarios.listarUsuarios}" class="d-flex" role="search">
         <input type="text" name="pesquisaTexto" class="form-control me-2" placeholder="Search" aria-label="Seach">
         <button class="btn btn-outline-success" type="submit">Pesquisar</button>
       </form>
@@ -17,7 +18,7 @@
 
 
 
-${session.get("usuario.id")}
+
 
 
 

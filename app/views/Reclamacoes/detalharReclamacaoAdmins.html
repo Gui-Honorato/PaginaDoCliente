@@ -1,0 +1,96 @@
+#{extends 'main.html' /}
+#{set title:'Detalhamento da Reclamação' /}
+
+<!--Barra de navegação da parte de superior do detalhamento, o link da logo ainda nao funciona, depois pretedemos dar funcionalidade pra ele-->
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/public/images/navbarImplasReclamacoes.png" alt="Logo" width="220" height="70" class="d-inline-block align-text-top">
+      </a><p class="text-success">Detalhamento</p>
+
+      <nav class="navbar bg-light">
+        <form class="container-fluid justify-content-start">
+          <a href="@{Reclamacoes.listarReclamacoesAdmins}" class="btn btn-outline-success me-2" style="text-decoration: none;">Todas Reclamações</a>
+        </form>
+      </nav>
+    </div>
+  </nav>
+<!--Parte de cima da tabela que nao queriamos usar, so mesmo a linha-->
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <!--aqui começa a detalhar todos os atributos da reclamação-->
+    <tbody class="table-group-divider">
+      <tr>
+        <th scope="row">Nome do Cliente: </th>
+        <td>${reclamacaoDetalharAdminsObj.usuarioReclamador.nomeUsuarioString}</td>
+        
+        <th>CPF/CNPJ: </th>
+        <td>${reclamacaoDetalharAdminsObj.usuarioReclamador.numIdentificadorUsuarioString}</td>
+      </tr>
+      
+      <tr>
+        <th scope="row">Email do Cliente: </th>
+        <td>${reclamacaoDetalharAdminsObj.usuarioReclamador.emailUsuarioString}</td>
+        
+        <th>Contato do Cliente: </th>
+        <td>${reclamacaoDetalharAdminsObj.usuarioReclamador.contatoUsuarioString}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Numero do Pedido: </th>
+        <td>${reclamacaoDetalharAdminsObj.numPedido}</td>
+        
+        <th>Data do Pedido: </th>
+        <td>${reclamacaoDetalharAdminsObj.dataPedido.format('dd/MM/yyyy')}</td>
+      </tr>
+      
+      <tr>
+        <th scope="row">Titulo da Reclamação: </th>
+        <td>${reclamacaoDetalharAdminsObj.tituloReclamacao}</td>
+        
+        <th>Data da Reclamação: </th>
+        <td>${reclamacaoDetalharAdminsObj.dataReclamacao.format('dd/MM/yyyy')}</td>
+      </tr>
+    </tbody>
+  </table>
+
+    <!--a parte da imagem e da descrição da reclamação-->
+
+
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <figure class="figure">
+                <img src="/uploads/${reclamacaoDetalharAdminsObj.id}/${reclamacaoDetalharAdminsObj.fotoFalhaNome}" class="figure-img img-fluid rounded" style="width: 400px; height: 300px;" alt="Foto da Falha">
+                <figcaption class="figure-caption">Imagem da falha cadastrada pelo usuario.</figcaption>
+            </figure>
+          </div>
+          <div class="col">
+            <div class="card border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Descrição</div>
+                <div class="card-body text-dark">
+                  <p class="card-text">${reclamacaoDetalharAdminsObj.descReclamacao}</p>
+                </div>
+              </div>
+          </div>
+          <div class="col">
+            <form action="@{Reclamacoes.detalharReclamacaoAdmins(reclamacaoDetalharAdminsObj.id)}" method="post">
+              <input type="hidden" name="reclamacaoDetalharAdminsObj.id" value="reclamacaoDetalharAdminsObj.id">
+              <div class="input-group">
+                <span class="input-group-text">Reposta Ao Cliente</span>
+                <textarea name="respostaDaEmpresaText" class="form-control" placeholder="Responda o cliente..." aria-label="Resposta ao Cliente" cols="10" rows="10"></textarea>
+              </div>
+              <br>
+              <span><input type="submit" class="btn btn-success" value="Responder"></span>
+
+            </form>
+          </div>
+        </div>
+      </div>
