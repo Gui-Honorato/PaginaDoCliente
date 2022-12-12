@@ -20,7 +20,7 @@ import play.mvc.Before;
 import play.mvc.Controller;
 
 public class Seguranca extends Controller {
-    
+    //checa se o usuaro esta logado no sistema para libere-lo as funcionalidades
     @Before
 	static void checkAuthentication() {
 		if (session.get("usuario.email") == null) {
@@ -28,6 +28,7 @@ public class Seguranca extends Controller {
 			Logins.formularioLogin();
 		}
 	}
+	//Verifica se o usuario é administrador para liberar as funções que so o admin pode manipular
 	@Before
 	static void verificarAdministrador() {
 		String tipoUsuarioVerificadorString = session.get("usuario.tipoUsuario");

@@ -6,11 +6,13 @@
     <div class="container-fluid">
         
         <a class="navbar-brand" href="#"> <img src="/public/images/navbarImplasReclamacoes.png" alt="Logo" width="220" height="70" class="d-inline-block align-text-top"></a>
-        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" href="@{Reclamacoes.formulario}">Cadastra Reclamação</a>
-          <a class="nav-link active" href="@{Reclamacoes.listarReclamacoes}">Minhas Reclamações</a>
+          <a class="btn btn-outline-success me-2" style="text-decoration: none;" href="@{Reclamacoes.formulario}">Cadastra Reclamação</a>
+          <a class="btn btn-outline-success me-2" style="text-decoration: none;" href="@{Reclamacoes.listarReclamacoes}">Minhas Reclamações</a>
           <p class="nav-link" style="color: rgb(0, 144, 0);">Olá SR(a) Cliente ${session.get("usuario.name")}</p>
         </div>
     </div>
@@ -24,6 +26,24 @@
     </div>
   </nav>
 
+
+
+
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <img src="/public/images/site_.png" alt="">  
+    </div>
+    <div class="col">
+    
+    </div>
+    <div class="col">
+    
+    </div>
+  </div>
+</div>
+  
  
 
   

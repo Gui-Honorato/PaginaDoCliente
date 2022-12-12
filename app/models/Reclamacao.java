@@ -11,7 +11,8 @@ package models;
  * 
  * Programador/Gerente de projeto: Guilherme Honorato
  * Data: 21/10/2022
- * Alteração: teste de funcionalidades
+ * Alteração: teste de funcionalidades e resolução de bug na lista de reclamações de administradores
+ *  
  * 
  * ###########################
  */
