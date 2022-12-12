@@ -20,6 +20,7 @@ package controllers;
 
  //Importação de bibliotecas do java
 import groovyjarjarpicocli.CommandLine.IFactory;
+import models.DeletadoStatusUsuario;
 import models.Usuario;
 import play.libs.Crypto;
 import play.mvc.Controller;
@@ -40,7 +41,7 @@ public class Logins extends Controller {
      */
     public static void logar(String login, String senha){
         //Compara o login e senha informados com os cadastrados no banco
-        Usuario usuarioObj = Usuario.find("emailUsuarioString = ?1 and senha = ?2", login, Crypto.passwordHash(senha)).first();
+        Usuario usuarioObj = Usuario.find("(emailUsuarioString = ?1 and senha = ?2) AND deletadoStatusUsuarioEnum = ?3", login, Crypto.passwordHash(senha), DeletadoStatusUsuario.ATIVADO).first();
         //Caso os login e senha informados nao forem encontrados entra aqui
         if(usuarioObj == null){
             flash.error("login e senha invalidos");
