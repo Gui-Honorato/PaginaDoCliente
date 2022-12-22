@@ -5,12 +5,12 @@ package models;
  * 
  * Autor: Maria Fernanda (ribeiro.fernanda@escolar.ifrn.edu.br) e jezreel Lucas (jezreel.lucas@escolar.ifrn.edu.br)
  * 
- * Data de Criação: 14/10/2022
+ * Data de Criação: 21/10/2022
  * ##########################
  * Ultima Alteração:
  * 
  * Programador/Gerente de projeto: Guilherme Honorato
- * Data: 21/10/2022
+ * Data: 02/12/2022
  * Alteração: teste de funcionalidades e resolução de bug na lista de reclamações de administradores
  *  
  * 

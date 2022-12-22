@@ -6,12 +6,12 @@ package controllers;
  * 
  * Autor: Guilherme da Silva Honorato (g.honorato@escolar.ifrn.edu.br)
  * 
- * Data de Criação: 14/10/2022
+ * Data de Criação: 21/10/2022
  * ##########################
  * Ultima Alteração:
  * 
  * Programador/Gerente de projeto: Guilherme Honorato
- * Data: 10/12/2022
+ * Data: 02/12/2022
  * Alteração: teste de funcionalidades e resolução de bug no pesquisa do listar dos clientes
  * 
  * ###########################
@@ -35,6 +35,7 @@ import models.ArquivadoStatus;
 //importações de classes
 import models.DeletadoStatusReclamacao;
 import models.Reclamacao;
+import models.TipoDeUsuario;
 import models.Usuario;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -50,6 +51,15 @@ public class Reclamacoes extends Controller {
      */
     public static void formulario() {
         render();
+    }
+    
+    /**
+     * Formulario que os adms podem fazer as reclamações pelos clientes
+     */
+    @Administrator
+    public static void formularioAdmin(){
+        List<Usuario> usuariosListSelectObj = Usuario.find("tipoDeUsuarioEnum = ?1", TipoDeUsuario.CLIENT).fetch();
+        render(usuariosListSelectObj);
     }
     /**
      * @param reclamacaoObj
@@ -92,11 +102,20 @@ public class Reclamacoes extends Controller {
             //salva a reclamação no banco
             reclamacaoObj.save();
              //informa o sucesso no cadastro na tela do usuario
-            flash.success("Sua reclamação foi cadastrada com sucesso!");
+            flash.success("Reclamação cadastrada com sucesso!");
         
         }
         //chama a action detalhar para o detalhamento da reclamação
-        detalharReclamacao(reclamacaoObj.id);
+
+         
+       if(session.get("usuario.tipoUsuario").equals("CLIENT")){
+           detalharReclamacao(reclamacaoObj.id);
+       }
+       if(session.get("usuario.tipoUsuario").equals("ADMIN")){
+        listarReclamacoesAdmins();
+       }
+
+
     }
     /**
      * action da listagem de reclamações

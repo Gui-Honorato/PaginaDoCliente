@@ -4,7 +4,7 @@ package jobs;
  * 
  * Autor: Guilherme da Silva Honorato (g.honorato@escolar.ifrn.edu.br)
  * 
- * Data de Criação: 14/10/2022
+ * Data de Criação: 08/12/2022
  * ##########################
  * Ultima Alteração:
  * 
@@ -32,10 +32,10 @@ public class inicializador extends Job{
         if(Usuario.count() == 0){
             //cria o novo usuario e seta todos seus parametros
             Usuario root = new Usuario();
-            root.nomeUsuarioString = "Root Honorato";
+            root.nomeUsuarioString = "Root";
             root.numIdentificadorUsuarioString = "999.999.999.99";
-            root.senha = "root12";
-            root.emailUsuarioString = "honorato@admin.com";
+            root.senha = "root123";
+            root.emailUsuarioString = "root@admin.com";
             root.contatoUsuarioString = "84991281309";
             root.dataDeEntrada = new Date();
             root.tipoDeUsuarioEnum = TipoDeUsuario.ADMIN;
