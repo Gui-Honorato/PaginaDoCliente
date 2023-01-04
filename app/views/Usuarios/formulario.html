@@ -23,15 +23,17 @@
         
         <div class="input-group input-group-lg">
             <span class="input-group-text" id="inputGroup-sizing-lg">Nome do cliente</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.nomeUsuarioString" required autofocus id="nomeCliente" value="${usuarioEditObj?.nomeUsuarioString}">
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.nomeUsuarioString" required autofocus id="nomeCliente" value="${flash['reclamacaoObj.nomeUsuarioString'] ?  flash['reclamacaoObj.nomeUsuarioString'] : usuarioEditObj?.nomeUsuarioString}">
+            #{error 'usuarioObj.nomeUsuarioString'/}
         </br>
         </br>
             <span class="input-group-text" id="inputGroup-sizing-lg">CNPJ/CPF</span>
-            <input type="text" class="form-control" placeholder="00.000.000/0000-00 ou 999.999.999-99" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.numIdentificadorUsuarioString" required id="NumeroIdenticador" value="${usuarioEditObj?.numIdentificadorUsuarioString}">
-
+            <input type="text" class="form-control" placeholder="00.000.000/0000-00 ou 999.999.999-99" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.numIdentificadorUsuarioString" required id="NumeroIdenticador" value="${flash['reclamacaoObj.numIdentificadorUsuarioString'] ?  flash['reclamacaoObj.numIdentificadorUsuarioString'] : usuarioEditObj?.numIdentificadorUsuarioString}">
+            #{error 'usuarioObj.numIdentificadorUsuarioString'/}
             <span class="input-group-text" id="inputGroup-sizing-lg">Contato</span>
-        <input type="text" class="form-control" placeholder="(99)99999-9999" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.contatoUsuarioString" id="Titulo" required value="${usuarioEditObj?.contatoUsuarioString}">
-        </div>
+        <input type="text" class="form-control" placeholder="(99)99999-9999" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.contatoUsuarioString" id="Contato" required value="${flash['reclamacaoObj.contatoUsuarioString'] ?  flash['reclamacaoObj.contatoUsuarioString'] : usuarioEditObj?.contatoUsuarioString}">
+        #{error 'usuarioObj.contatoUsuarioString'/}
+      </div>
 </br>
 <select name="usuarioObj.tipoDeUsuarioEnum" class="form-select" aria-label="Default select example">
   <option selected >Selecione o Tipo de Usuario</option>
@@ -39,11 +41,12 @@
   <option value="CLIENT">Cliente Da empresa</option>
 
 </select>
+#{error 'usuarioObj.tipoDeUsuarioEnum'/}
 <br>
     <div class="input-group input-group-lg">   
         <span class="input-group-text" id="inputGroup-sizing-lg">Email do Usuario</span>
-        <input type="text" class="form-control" placeholder="implasverde@example.com" aria-label="Recipient's username" aria-describedby="basic-addon2" name="usuarioObj.emailUsuarioString" id="Email" required value="${usuarioEditObj?.emailUsuarioString}">
-
+        <input type="text" class="form-control" placeholder="implasverde@example.com" aria-label="Recipient's username" aria-describedby="basic-addon2" name="usuarioObj.emailUsuarioString" id="Email" required value="${flash['reclamacaoObj.emailUsuarioString'] ?  flash['reclamacaoObj.emailUsuarioString'] : usuarioEditObj?.emailUsuarioString}">
+        #{error 'usuarioObj.emailUsuarioString'/}
         <span class="input-group-text" id="inputGroup-sizing-lg">Senha do Usuario</span>
         <input type="password" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" name="senha" id="Senha"  value="">
         

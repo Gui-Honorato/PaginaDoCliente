@@ -26,6 +26,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import play.data.validation.MinSize;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 /*
@@ -36,9 +38,14 @@ import play.db.jpa.Model;
 @Entity
 public class Reclamacao extends Model {
     //atributos da reclamação
+    @Required
     public String tituloReclamacao;
+    @Required
+    @MinSize(4)
     public String numPedido;
+    @Required
     public Date dataPedido;
+    @Required
     public String descReclamacao;
     public String fotoFalhaNome;
     public String respostaDaEmpresa;

@@ -32,11 +32,12 @@ import java.util.List;
 import org.hibernate.cfg.CollectionSecondPass;
 
 import models.ArquivadoStatus;
-//importações de classes
+
 import models.DeletadoStatusReclamacao;
 import models.Reclamacao;
 import models.TipoDeUsuario;
 import models.Usuario;
+import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
 import play.mvc.Scope.Session;
@@ -67,7 +68,14 @@ public class Reclamacoes extends Controller {
      * 
      * action de salvar uma reclamação que recebe o model Reclamacao e transforma em objeto, e também recebe um File
      */
-    public static void salvarReclamacao(Reclamacao reclamacaoObj, File fotoFalha){
+    public static void salvarReclamacao(@Valid Reclamacao reclamacaoObj, File fotoFalha){
+        if(validation.hasErrors()){
+            validation.keep();
+            params.flash();
+            formulario();
+        }
+        
+        
         //caso haja uma foto inserida no input ele vai entrar nesse IF se execultar todos esses comandos
         //esses comandos além de salvar uma reclamação, salvam a foto em arquivo associam a mesma a reclamação no banco de dados pelo nome
         if (fotoFalha != null) {

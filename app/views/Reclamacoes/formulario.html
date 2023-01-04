@@ -1,5 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Cadastro de Reclamação' /}
+
+
 <div class="container-fluid">
     <!--Barra de navegação de cima do formulario-->
     <nav class="navbar bg-light">
@@ -22,24 +24,28 @@
 
     <div class="input-group input-group-lg">
         <span class="input-group-text" id="inputGroup-sizing-lg">Título:</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="reclamacaoObj.tituloReclamacao" id="Titulo" required value="${reclamacaoEditObj?.tituloReclamacao}">
+        
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="reclamacaoObj.tituloReclamacao" id="Titulo" required value="${flash['reclamacaoObj.tituloReclamacao'] ?  flash['reclamacaoObj.tituloReclamacao'] : reclamacaoEditObj?.tituloReclamacao}">
+        #{error 'reclamacaoObj.tituloReclamacao'/}
     </div>
 </br>
 </br>
     <div class="input-group input-group-lg">
         <span class="input-group-text" id="inputGroup-sizing-lg">Número Do Pedido:</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="reclamacaoObj.numPedido" id="NumeroPedido" required value="${reclamacaoEditObj?.numPedido}">
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="reclamacaoObj.numPedido" id="NumeroPedido" required value="${flash['reclamacaoObj.numPedido'] ?  flash['reclamacaoObj.numPedido'] : reclamacaoEditObj?.numPedido}">
+        #{error 'reclamacaoObj.numPedido'/}
         <span class="input-group-text" id="inputGroup-sizing-lg">Data do pedido:</span>
         <input type="date" class="form-control" name="reclamacaoObj.dataPedido" id="DataPedido" required value="${reclamacaoEditObj?.dataPedido?.format('yyyy-MM-dd')}">
+        #{error 'reclamacaoObj.dataPedido'/}
     </div>
 </br>
 </br>
     <div class="input-group">
         <span class="input-group-text">Descrição da Reclamação</span>
-        <textarea name="reclamacaoObj.descReclamacao" class="form-control" aria-label="With textarea" id="DescReclamacao" required cols="30" rows="10">${reclamacaoEditObj?.descReclamacao}</textarea>
+        <textarea name="reclamacaoObj.descReclamacao" class="form-control" aria-label="With textarea" id="DescReclamacao" required cols="30" rows="10">${flash['reclamacaoObj.descReclamacao'] ?  flash['reclamacaoObj.descReclamacao'] : reclamacaoEditObj?.descReclamacao}</textarea>
+        #{error 'reclamacaoObj.descReclamacao'/}
     </div>
-    <label for="DescReclamacao">
-    </label>
+
 </br>
 </br>
     <div class="input-group mb-3">

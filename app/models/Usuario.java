@@ -21,17 +21,30 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.CreditCardNumber;
+
+
+
+import play.data.validation.Email;
+import play.data.validation.Match;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 import play.libs.Crypto;
 
 @Entity
 public class Usuario extends Model {
     //atributos de Usuario
+    @Required
     public String nomeUsuarioString;
+    @Required
     public String numIdentificadorUsuarioString;
     public String senha;
+    @Required
+    @Email
     public String emailUsuarioString;
+    @Required
     public String contatoUsuarioString;
+    
     public Date dataDeEntrada;
 
 
@@ -44,6 +57,7 @@ public class Usuario extends Model {
     @Enumerated(EnumType.STRING)
     public DeletadoStatusUsuario deletadoStatusUsuarioEnum;
     
+    @Required
     @Enumerated(EnumType.STRING)
     public TipoDeUsuario tipoDeUsuarioEnum;
     //contrutor de usuario

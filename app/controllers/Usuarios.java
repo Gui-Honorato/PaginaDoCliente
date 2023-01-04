@@ -22,6 +22,7 @@ import java.util.List;
 
 import models.Usuario;
 import models.DeletadoStatusUsuario;
+import play.data.validation.Valid;
 import play.mvc.Controller;
 import play.mvc.With;
 import security.Administrator;
@@ -45,7 +46,12 @@ public class Usuarios extends Controller{
      * salva usuario
      */
     @Administrator
-    public static void salvarUsuario(Usuario usuarioObj, String senha){
+    public static void salvarUsuario(@Valid Usuario usuarioObj, String senha){
+        if(validation.hasErrors()){
+            validation.keep();
+            params.flash();
+            formulario();
+        }
         //verifica se tem senha caso o usuario for editado para nao recadastrar a senha
         if(senha.equals("") == false){
             usuarioObj.senha = senha;
