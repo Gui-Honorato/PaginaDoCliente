@@ -24,7 +24,12 @@
         <div class="input-group input-group-lg">
             <span class="input-group-text" id="inputGroup-sizing-lg">Nome do cliente</span>
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="usuarioObj.nomeUsuarioString" required autofocus id="nomeCliente" value="${flash['reclamacaoObj.nomeUsuarioString'] ?  flash['reclamacaoObj.nomeUsuarioString'] : usuarioEditObj?.nomeUsuarioString}">
-            #{error 'usuarioObj.nomeUsuarioString'/}
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              #{error 'usuarioObj.nomeUsuarioString'/}
+  
+            </div>
+            
+            
         </br>
         </br>
             <span class="input-group-text" id="inputGroup-sizing-lg">CNPJ/CPF</span>
